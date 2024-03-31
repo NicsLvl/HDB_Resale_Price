@@ -1,22 +1,28 @@
-from src import clean_data, eda, model
+from src import clean_and_merge, eda, model
 from src.overhead_functions import timer, memory_usage
 
 
 @timer
 def main():
     y_variable = 'resale_price'
-    df = clean_data.main()
+    df = clean_and_merge.main()
 
-    eda.main(df)
+    # eda.main(df)
     chosen_features = [
+        # Traditional metrics used in industry
         'floor_area_sqm',  # 0.81 correlation
         'remaining_lease',  # 0.33 correlation
         'storey',  # 0.21 correlation
-        'flat_type',  # can drop if model is sufficiently good enough
-        'town',  # can drop if model is sufficiently good enough
-        'flat_model',  # can drop if model is sufficiently good enough
-        # 'block',  # should be essentially useless
-        # 'street_name',  # should be essentially useless
+
+        # Other features that might be useful
+        # Can drop if model is sufficiently good enough
+        'flat_type',
+        'town',
+        'flat_model',
+
+        # Should be essentially useless
+        # 'block',
+        # 'street_name',
     ]
 
     # Remove some minority categories
@@ -25,6 +31,7 @@ def main():
     #     ['model a', 'improved', 'new generation', 'simplified', 'premium apartment',
     #      'standard', 'apartment', 'maisonette', ' model a2'])]
     model.main(df, y_variable, chosen_features)
+    return df
 
 
 if __name__ == "__main__":
