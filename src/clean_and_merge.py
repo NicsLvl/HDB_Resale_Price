@@ -69,7 +69,7 @@ def clean_columns(dfs: typing.Generator) -> pd.DataFrame:
         def vectorized_loc(df):
             df.loc[df['remaining_lease'] > 99, 'remaining_lease'] = 99
             return df
-        df = vectorized_loc(df)
+        # df = vectorized_loc(df)
         # Which to Choose?
         # Vectorized functions are always fastest and most memory efficient
         # Only use apply, applymap when you need custom operations

@@ -30,7 +30,7 @@ def main():
     # df = df[df['flat_model'].isin(
     #     ['model a', 'improved', 'new generation', 'simplified', 'premium apartment',
     #      'standard', 'apartment', 'maisonette', ' model a2'])]
-    model.main(df, y_variable, chosen_features)
+    # model.main(df, y_variable, chosen_features)
     return df
 
 
