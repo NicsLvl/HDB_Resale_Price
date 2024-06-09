@@ -79,10 +79,11 @@ def clean_columns(dfs: typing.Generator) -> pd.DataFrame:
         df['storey'] = df['storey_range'].apply(lambda x: (
             int(x.split(' ')[0]) + int(x.split(' ')[2])) / 2)
 
-        df.drop(columns=['lease_commence_date',
-                         #  'year_sold',
-                         'month_sold',
-                         'storey_range'], inplace=True)
+        df.drop(columns=[
+            # 'lease_commence_date',
+            #  'year_sold',
+            'month_sold',
+            'storey_range'], inplace=True)
 
         # Perform other non-numerical operations
         df['flat_model'] = df['flat_model'].str.lower()
@@ -155,7 +156,7 @@ def main() -> pd.DataFrame:
     df['flat_model'] = df['flat_model'].astype('category')
 
     df = normalize_price(df)
-    df = df[['year_sold', 'floor_area_sqm', 'remaining_lease',
+    df = df[['year_sold', 'floor_area_sqm', 'remaining_lease', 'lease_commence_date',
              'storey', 'flat_type', 'town', 'block',
              'street_name', 'flat_model', 'resale_price']]
 
